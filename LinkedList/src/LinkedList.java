@@ -22,7 +22,7 @@ public class LinkedList<T> {
         }
     }
 
-    private Node dummyHead;
+    private final Node dummyHead;
     private int size;
 
     public LinkedList(){
@@ -57,4 +57,80 @@ public class LinkedList<T> {
         add(size, e);
     }
 
+    public T get(int index){
+        if (index < 0 || index > size)
+            throw new IllegalArgumentException("Get failed.Illegal index.");
+
+        Node cur = dummyHead.next;
+        for(int i = 0; i < index; i ++) {
+            cur = cur.next;
+        }
+        return cur.e;
+    }
+
+    public T getFirst(){
+        return get(0);
+    }
+
+    public T getLast(){
+        return get(size - 1);
+    }
+
+    public void set(int index, T e){
+        if (index < 0 || index > size)
+            throw new IllegalArgumentException("Set failed.Illegal index.");
+
+        Node cur = dummyHead.next;
+        for(int i = 0; i < index; i ++){
+            cur = cur.next;
+        }
+        cur.e = e;
+    }
+
+    public boolean contains(T e){
+        Node cur = dummyHead.next;
+        while (cur != null) {
+            if(cur.e.equals(e)){
+                return true;
+            }
+            cur = cur.next;
+        }
+        return false;
+    }
+
+    public T remove(int index){
+        if (index < 0 || index > size)
+            throw new IllegalArgumentException("Set failed.Illegal index.");
+        Node prev = dummyHead;
+        for(int i = 0; i < index; i ++){
+            prev = prev.next;
+        }
+
+        Node retNode = prev.next;
+        prev.next = retNode.next;
+        size --;
+
+        return retNode.e;
+    }
+
+    public T removeFirst(){
+        return remove(0);
+    }
+
+    public T removeLast(){
+        return remove(size - 1);
+    }
+
+    @Override
+    public String toString(){
+
+        StringBuilder res = new StringBuilder();
+        Node cur = dummyHead.next;
+        while (cur != null) {
+            res.append(cur).append("->");
+            cur = cur.next;
+        }
+        res.append(" NULL");
+        return res.toString();
+    }
 }
