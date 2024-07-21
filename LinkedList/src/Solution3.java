@@ -14,7 +14,7 @@ public class Solution3 {
     }
 
     public static void main(String[] args){
-        int[] num s = {1, 2, 6, 3, 4, 6, 8};
+        int[] nums = {1, 2, 6, 3, 4, 6, 8};
         ListNode head = new ListNode(nums);
         System.out.println(head);
 
