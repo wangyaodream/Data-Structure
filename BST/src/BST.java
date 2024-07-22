@@ -95,4 +95,58 @@ public class BST<E extends Comparable<E>> {
         preOrder(node.left);
         preOrder(node.right);
     }
+
+    // 二分搜索树的中序遍历
+    public void inOrder(){
+        inOrder(root);
+    }
+
+    private void inOrder(Node node){
+        if (node == null)
+            return;
+        inOrder(node.left);
+        System.out.println(node.e);
+        inOrder(node.right);
+    }
+
+    public void postOrder(){
+        postOrder(root);
+    }
+
+    private void postOrder(Node node){
+        if (node == null)
+            return;
+
+        postOrder(node.left);
+        postOrder(node.right);
+        System.out.println(node.e);
+    }
+
+    @Override
+    public String toString() {
+        StringBuilder res = new StringBuilder();
+        generateBSTString(root, 0, res);
+        return res.toString();
+    }
+
+    private void generateBSTString(Node node, int depth, StringBuilder res){
+
+        if (node == null){
+            res.append(generateDepthString(depth) + "null\n");
+            return;
+        }
+
+        res.append(generateDepthString(depth) + node.e + "\n");
+        generateBSTString(node.left, depth + 1, res);
+        generateBSTString(node.right, depth + 1, res);
+
+    }
+
+    private String generateDepthString(int depth){
+        StringBuilder res = new StringBuilder();
+        for (int i = 0; i < depth; i ++){
+            res.append("--");
+        }
+        return res.toString();
+    }
 }
