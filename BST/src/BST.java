@@ -83,4 +83,16 @@ public class BST<E extends Comparable<E>> {
             return containers(node.right, e);
         }
     }
+
+    public void preOrder(){
+        preOrder(root);
+    }
+
+    private void preOrder(Node node){
+        if (node == null)
+            return;
+        System.out.println(node.e);
+        preOrder(node.left);
+        preOrder(node.right);
+    }
 }
