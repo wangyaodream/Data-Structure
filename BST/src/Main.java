@@ -5,11 +5,12 @@ public class Main {
         for(int num: nums)
             bst.add(num);
 
-        bst.preOrder();
-        System.out.println();
-        bst.inOrder();
-        System.out.println();
-        bst.postOrder();
+//        bst.preOrder();
+//        System.out.println();
+//        bst.inOrder();
+//        System.out.println();
+//        bst.postOrder();
+        bst.levelOrder();
         // System.out.println(bst);
     }
 }
