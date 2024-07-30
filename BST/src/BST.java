@@ -1,3 +1,5 @@
+import java.util.Stack;
+
 public class BST<E extends Comparable<E>> {
 
     private class Node{
@@ -94,6 +96,21 @@ public class BST<E extends Comparable<E>> {
         System.out.println(node.e);
         preOrder(node.left);
         preOrder(node.right);
+    }
+
+    public void preOrderNR() {
+        Stack<Node> stack = new Stack<>();
+        stack.push(root);
+        while (!stack.isEmpty()) {
+            Node curr = stack.pop();
+            System.out.println(curr.e);
+
+            // 由于栈是后进先出的，所有需要将右节点先压入再压入左节点，保证左节点先被读取出来
+            if (curr.right != null)
+                stack.push(curr.right);
+            if (curr.left != null)
+                stack.push(curr.left);
+        }
     }
 
     // 二分搜索树的中序遍历
