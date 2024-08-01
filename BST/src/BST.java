@@ -170,6 +170,55 @@ public class BST<E extends Comparable<E>> {
         return minimum(node.left);
     }
 
+    public E maximum() {
+        if (size == 0)
+            throw new IllegalArgumentException("BST is empty!");
+        return maximum(root).e;
+    }
+
+    private Node maximum(Node node) {
+        if (node.right == null)
+            return node;
+        return maximum(node.right);
+    }
+
+    public E removeMin() {
+        E ret = minimum();
+
+        root = removeMin(root);
+        return ret;
+    }
+
+    private Node removeMin(Node node) {
+        if (node.left == null){
+            Node rightNode = node.right;
+            node.right = null;
+            size --;
+            return rightNode;
+        }
+        // 删除node之后返回的是它的右子树(如果存在的话)
+        node.left = removeMin(node.left);
+        return node;
+    }
+
+    public E removeMax() {
+        E ret = maximum();
+
+        root = removeMax(root);
+        return ret;
+    }
+
+    private Node removeMax(Node node) {
+        if (node.right == null){
+            Node leftNode = node.left;
+            node.left = null;
+            size --;
+            return leftNode;
+        }
+        // 删除node之后返回的是它的右子树(如果存在的话)
+        node.right = removeMax(node.right);
+        return node;
+    }
     @Override
     public String toString() {
         StringBuilder res = new StringBuilder();
