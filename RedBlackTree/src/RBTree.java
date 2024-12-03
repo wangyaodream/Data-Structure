@@ -40,5 +40,39 @@ public class RBTree<K extends Comparable<K>, V> {
         return node.color;
     }
 
+    // 进行左旋转
+    private Node leftRotate(Node node) {
+        Node x = node.right;
+
+        node.right = x.left;
+        x.left = node;
+
+        x.color = node.color;
+        node.color = RED;
+        return x;
+    }
+
+    // 向红黑树中添加元素（key, value), 红黑树中根节点必须为黑
+    public void add(K key, V value){
+        root = add(root, key, value);
+        root.color = BLACK;
+    }
+
+    // 递归的add方法
+    private Node add(Node node, K key, V value) {
+        if (node == null) {
+            size ++;
+            return new Node(key, value);
+        }
+
+        if(key.compareTo(node.key) < 0)
+            node.left = add(node.left, key, value);
+        else if(key.compareTo(node.key) > 0)
+            node.right = add(node.right, key, value);
+        else
+            node.value = value;
+        return node;
+    }
+
 
 }
