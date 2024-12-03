@@ -40,5 +40,5 @@ public class RBTree<K extends Comparable<K>, V> {
         return node.color;
     }
 
-    
+
 }
